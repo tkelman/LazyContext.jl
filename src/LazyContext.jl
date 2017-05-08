@@ -1,17 +1,10 @@
 module LazyContext
 
-"""
-    test_function()
+import MacroTools
 
-Return 1
-
-```jldoctest
-julia> import LazyContext
-
-julia> LazyContext.test_function()
-2
-```
-"""
-test_function() = 1
+include("utilities.jl")
+include("environment.jl")
+include("meta_environment.jl")
+include("evaluate.jl")
 
 end
