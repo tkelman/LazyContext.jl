@@ -56,11 +56,28 @@ export @evaluate
 """
     macro evaluate(expression)
 
-[`evaluate!`](@ref) `expression` in the context of `ENVIRONMENT`.
+[`evaluate!`](@ref) `expression` in the context of `ENVIRONMENT`. This is useful
+to allow repeated calling, but be careful when modifying `ENVIRONMENT`.
+
+```jldoctest
+julia> using LazyContext
+
+julia> @new_environment;
+
+julia> @evaluate a = 1;
+
+julia> @evaluate a
+1
+
+julia> ENVIRONMENT[:a] = 2;
+
+julia> @evaluate a
+2
+```
 
 Only limited syntax is supported inside `@evaluate`.
 
-Anonymous are suppported, but only using the terse syntax.
+Anonymous functions are suppported, but only using the terse syntax.
 
 ```jldoctest
 julia> using LazyContext
